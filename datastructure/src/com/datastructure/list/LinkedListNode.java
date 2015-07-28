@@ -13,7 +13,7 @@ public class LinkedListNode {
 	public String toString() {
 		if (next == null)
 			return data.toString();
-		return data + " " + next.toString();
+		return data + "," + next.toString();
 	}
 
 }
