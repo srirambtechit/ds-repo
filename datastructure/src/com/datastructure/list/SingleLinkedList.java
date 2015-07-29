@@ -27,13 +27,15 @@ public class SingleLinkedList {
 	public void deleteList() {
 		LinkedListNode t = head;
 		while (t != null) {
+			LinkedListNode node = t;
 			t = t.next;
-			if (t != null) {
-				t.next = null;
+			if (node != null) {
+				node.next = null;
+				node = null;
 			}
 		}
-		t = null;
-		System.out.println("DL : " + head);
+		head = null;
+		size = 0;
 	}
 
 	/**
