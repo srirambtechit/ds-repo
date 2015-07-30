@@ -40,6 +40,9 @@ public class SingleLinkedListTest {
 		assertEquals("size?", 4, list.count());
 		list.deleteList();
 		assertEquals("size?", 0, list.count());
+		list.add(5);
+		list.add(8);
+		assertEquals("size?", 2, list.count());
 	}
 
 	@Test
@@ -49,6 +52,43 @@ public class SingleLinkedListTest {
 		list.add(32);
 		list.add(89);
 		assertEquals("getNth?", Integer.valueOf(32), list.getNth(1));
+	}
+
+	@Test
+	public void testAddFirst() {
+		list.add(8);
+		list.add(9);
+		assertEquals("getNth?", Integer.valueOf(8), list.getNth(0));
+		list.push(7);
+		assertEquals("getNth?", Integer.valueOf(7), list.getNth(0));
+	}
+
+	@Test
+	public void testAddAtHead() {
+		list.addAt(8, 0);
+	}
+
+	@Test
+	public void testAddAtMiddle() {
+
+	}
+
+	@Test
+	public void testAddAtTail() {
+
+	}
+
+	@Test
+	public void testStackKindOfOperation() {
+		// push data to list LIFO fashion
+		list.push(4);
+		list.push(5);
+		list.push(6);
+		// data to compare
+		int top = list.getNth(0);
+		// pop data from list LIFO fashion
+		int element = list.pop();
+		assertEquals("equals?", top, element);
 	}
 
 	@Test(expected = IndexOutOfBoundsException.class)
