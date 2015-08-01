@@ -64,21 +64,6 @@ public class SingleLinkedListTest {
 	}
 
 	@Test
-	public void testAddAtHead() {
-		list.addAt(8, 0);
-	}
-
-	@Test
-	public void testAddAtMiddle() {
-
-	}
-
-	@Test
-	public void testAddAtTail() {
-
-	}
-
-	@Test
 	public void testStackKindOfOperation() {
 		// push data to list LIFO fashion
 		list.push(4);
@@ -94,6 +79,105 @@ public class SingleLinkedListTest {
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testGetNthWithIndexOutOfBoundsException() {
 		assertEquals("getNth?", null, list.getNth(-1));
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testAddAtWhenListEmpty_fail() {
+		list.addAt(8, 1);
+		print("testAddAtWhenListEmpty_fail", list);
+	}
+
+	@Test
+	public void testAddAtWhenListEmpty_pass() {
+		list.addAt(8, 0);
+		list.addAt(10, 0);
+		print("testAddAtWhenListEmpty_pass", list);
+	}
+
+	@Test
+	public void testAddAtHead_pass() {
+		list.add(9);
+		list.addAt(8, 0);
+		print("testAddAtHead_pass", list);
+	}
+
+	@Test
+	public void testAddAtTail_pass() {
+		list.add(9); // index 0
+		list.add(10); // index 1
+		list.addAt(8, 1);
+		print("testAddAtTail_pass", list);
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testAddAtHead_fail() {
+		print("testAddAtHead_fail", list);
+		list.addAt(8, -1);
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testAddAtMiddle_fail() {
+		print("testAddAtMiddle_fail", list);
+		list.addAt(3, -1);
+	}
+
+	@Test
+	public void testAddAtMiddle_pass() {
+		list.add(3); // [3]
+		list.add(2); // [3, 2]
+		list.addAt(12, 1); // add 12 after 3, so [3, 12, 2]
+		list.addAt(10, 2); // add 10 after 12, so [3, 12, 10, 2]
+		list.addAt(100, 3);
+		print("testAddAtMiddle_pass", list);
+	}
+
+	@Test
+	public void testSortedInsert_pass_case1() {
+		list.sortedInsert(4);
+		print("testSortedInsert_pass_case1 : list is empty", list);
+	}
+
+	@Test
+	public void testSortedInsert_pass_case2() {
+		list.sortedInsert(5);
+		list.sortedInsert(3);
+		print("testSortedInsert_pass_case2: head.data is greater than input data",
+				list);
+	}
+
+	@Test
+	public void testSortedInsert_pass_case3() {
+		list.sortedInsert(5);
+		list.sortedInsert(6);
+		list.sortedInsert(9);
+		list.sortedInsert(8);
+		print("testSortedInsert_pass_case3: insert at middle", list);
+	}
+
+	@Test
+	public void testSortedInsert_pass_case4() {
+		list.sortedInsert(5);
+		list.sortedInsert(6);
+		list.sortedInsert(7);
+		list.sortedInsert(8);
+		print("testSortedInsert_pass_case4: insert at last node", list);
+	}
+
+	@Test
+	public void testSortedInsert_pass() {
+		list.sortedInsert(5);
+		list.sortedInsert(8);
+		list.sortedInsert(3);
+		list.sortedInsert(4);
+		list.sortedInsert(7);
+		list.sortedInsert(10);
+		list.sortedInsert(6);
+		list.sortedInsert(1);
+		print("testSortedInsert_pass", list);
+	}
+
+	private void print(String method, Object obj) {
+		System.out.printf("%s : %s%n", method, obj);
 	}
 
 }

@@ -34,21 +34,80 @@ public class SingleLinkedList {
 		this.size++;
 	}
 
+	/**
+	 * <pre>
+	 * insert data to the list according to the index given.
+	 * if size == 0, index should be 0
+	 * if size == 3, index can be of 0, 1, 2
+	 * @param data - data to be added
+	 * @param index - range from 0 to (size - 1)
+	 * </pre>
+	 */
 	public void addAt(Integer data, int index) {
-		if (index > count() || index < 0)
-			throw new IndexOutOfBoundsException(String.format("%d <= size",
-					index));
-		
-		int position = index;
-		LinkedListNode t = head;
-		for (; t != null && index > 0; t = t.next, index--)
-			;
-
-		if (position == 0) {
-
-		}
+		if (index < 0 || index > size)
+			throw new IndexOutOfBoundsException(String.format("%d <= %d",
+					index, size));
 
 		LinkedListNode newNode = new LinkedListNode(data, null);
+
+		if (index == 0) {
+			// case1: no list, index = 0
+			if (head == null) {
+				add(data);
+			}
+			// case2: 1 node, index = 0
+			else {
+				newNode.next = head;
+				head = newNode;
+				size++;
+			}
+			return;
+		}
+
+		// case3: more than 1 node present in list
+		// find one node before for the given index since holding the next
+		// node's reference
+		LinkedListNode t = head;
+		index--;
+		for (; t.next != null && index > 0; t = t.next, index--)
+			;
+
+		newNode.next = t.next;
+		t.next = newNode;
+		size++;
+	}
+
+	public void sortedInsert(Integer data) {
+		LinkedListNode newNode = new LinkedListNode(data, null);
+		// case 1: List is empty
+		if (head == null) {
+			head = newNode;
+		}
+		// case 2: List has 1 node
+		else if (head.data > data) {
+			newNode.next = head;
+			head = newNode;
+		}
+		// case 3: List has more than 1 node
+		else {
+			LinkedListNode runner = head;
+			while (runner != null && runner.next != null) {
+				if (runner.next.data > data) {
+					break;
+				}
+				runner = runner.next;
+			}
+			// case 3a: if runner reaches last node
+			if (runner.next == null) {
+				runner.next = newNode;
+			}
+			// case 3b: if runner is middle node
+			else {
+				newNode.next = runner.next;
+				runner.next = newNode;
+			}
+
+		}
 	}
 
 	/**
