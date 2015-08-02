@@ -181,6 +181,42 @@ public class SingleLinkedList {
 		return t.data;
 	}
 
+	public void sortListByData() {
+		if (head == null)
+			return;
+
+		LinkedListNode runner1 = head;
+		while (runner1 != null) {
+			LinkedListNode runner2 = runner1.next;
+			while (runner2 != null) {
+				if (runner1.data > runner2.data) {
+					Integer t = runner2.data;
+					runner2.data = runner1.data;
+					runner1.data = t;
+					break;
+				}
+				runner2 = runner2.next;
+			}
+			runner1 = runner1.next;
+		}
+
+	}
+
+	public LinkedListNode appendList(SingleLinkedList list) {
+		if (head == null && list != null)
+			return head = list.head;
+
+		if (head != null && list == null)
+			return head;
+
+		LinkedListNode t = head;
+		while (t.next != null) {
+			t = t.next;
+		}
+		t.next = list.head;
+		return head;
+	}
+
 	public String toString() {
 		if (head == null)
 			return "[]";

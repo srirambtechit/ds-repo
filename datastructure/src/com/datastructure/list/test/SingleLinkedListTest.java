@@ -176,6 +176,46 @@ public class SingleLinkedListTest {
 		print("testSortedInsert_pass", list);
 	}
 
+	@Test
+	public void testSortByData() {
+		list.add(8);
+		list.add(3);
+		list.add(9);
+		list.add(4);
+		print("testSortByData: before sorting", list);
+		list.sortListByData();
+		print("testSortByData: after sorting", list);
+	}
+
+	@Test
+	public void testAppendList_pass() {
+		SingleLinkedList listOne = new SingleLinkedList();
+		listOne.add(8);
+		listOne.add(3);
+		listOne.add(7);
+		listOne.add(2);
+
+		SingleLinkedList listTwo = new SingleLinkedList();
+		listTwo.add(10);
+		listTwo.add(20);
+
+		listOne.appendList(listTwo);
+		System.out.println(listOne);
+	}
+
+	@Test
+	public void testAppendList_pass_1() {
+		SingleLinkedList listOne = new SingleLinkedList();
+		listOne.add(3);
+
+		SingleLinkedList listTwo = new SingleLinkedList();
+		listTwo.add(10);
+		listTwo.add(20);
+
+		listOne.appendList(listTwo);
+		System.out.println(listOne);
+	}
+
 	private void print(String method, Object obj) {
 		System.out.printf("%s : %s%n", method, obj);
 	}
