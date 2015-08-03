@@ -1,5 +1,8 @@
 package com.datastructure.list;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SingleLinkedList {
 
 	private LinkedListNode head;
@@ -215,6 +218,37 @@ public class SingleLinkedList {
 		}
 		t.next = list.head;
 		return head;
+	}
+
+	public static List<SingleLinkedList> frontBackSplit(SingleLinkedList listOne) {
+		LinkedListNode slow = listOne.head;
+		LinkedListNode fast = listOne.head;
+		while (fast != null && fast.next != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next;
+			if (fast != null)
+				fast = fast.next;
+		}
+
+		List<SingleLinkedList> result = new ArrayList<>();
+		result.add(listOne);
+
+		if (slow.next != null) {
+			// making sublists
+			SingleLinkedList listTwo = new SingleLinkedList();
+
+			// slow pointer will be stopped at mid of list so take next element
+			// as
+			// second list's header node
+			listTwo.head = slow.next;
+
+			// cutting the list by making next pointer to null, first list
+			// becomes
+			// first list
+			slow.next = null;
+			result.add(listTwo);
+		}
+		return result;
 	}
 
 	public String toString() {
