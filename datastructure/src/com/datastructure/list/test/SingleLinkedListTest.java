@@ -86,21 +86,21 @@ public class SingleLinkedListTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAtWhenListEmpty_fail() {
 	list.addAt(8, 1);
-	print("testAddAtWhenListEmpty_fail", list);
+	// print("testAddAtWhenListEmpty_fail", list);
     }
 
     @Test
     public void testAddAtWhenListEmpty_pass() {
 	list.addAt(8, 0);
 	list.addAt(10, 0);
-	print("testAddAtWhenListEmpty_pass", list);
+	// print("testAddAtWhenListEmpty_pass", list);
     }
 
     @Test
     public void testAddAtHead_pass() {
 	list.add(9);
 	list.addAt(8, 0);
-	print("testAddAtHead_pass", list);
+	// print("testAddAtHead_pass", list);
     }
 
     @Test
@@ -108,18 +108,18 @@ public class SingleLinkedListTest {
 	list.add(9); // index 0
 	list.add(10); // index 1
 	list.addAt(8, 1);
-	print("testAddAtTail_pass", list);
+	// print("testAddAtTail_pass", list);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAtHead_fail() {
-	print("testAddAtHead_fail", list);
+	// print("testAddAtHead_fail", list);
 	list.addAt(8, -1);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAtMiddle_fail() {
-	print("testAddAtMiddle_fail", list);
+	// print("testAddAtMiddle_fail", list);
 	list.addAt(3, -1);
     }
 
@@ -130,20 +130,21 @@ public class SingleLinkedListTest {
 	list.addAt(12, 1); // add 12 after 3, so [3, 12, 2]
 	list.addAt(10, 2); // add 10 after 12, so [3, 12, 10, 2]
 	list.addAt(100, 3);
-	print("testAddAtMiddle_pass", list);
+	// print("testAddAtMiddle_pass", list);
     }
 
     @Test
     public void testSortedInsert_pass_case1() {
 	list.sortedInsert(4);
-	print("testSortedInsert_pass_case1 : list is empty", list);
+	// print("testSortedInsert_pass_case1 : list is empty", list);
     }
 
     @Test
     public void testSortedInsert_pass_case2() {
 	list.sortedInsert(5);
 	list.sortedInsert(3);
-	print("testSortedInsert_pass_case2: head.data is greater than input data", list);
+	// print("testSortedInsert_pass_case2: head.data is greater than input data",
+	// list);
     }
 
     @Test
@@ -152,7 +153,7 @@ public class SingleLinkedListTest {
 	list.sortedInsert(6);
 	list.sortedInsert(9);
 	list.sortedInsert(8);
-	print("testSortedInsert_pass_case3: insert at middle", list);
+	// print("testSortedInsert_pass_case3: insert at middle", list);
     }
 
     @Test
@@ -161,7 +162,7 @@ public class SingleLinkedListTest {
 	list.sortedInsert(6);
 	list.sortedInsert(7);
 	list.sortedInsert(8);
-	print("testSortedInsert_pass_case4: insert at last node", list);
+	// print("testSortedInsert_pass_case4: insert at last node", list);
     }
 
     @Test
@@ -174,7 +175,7 @@ public class SingleLinkedListTest {
 	list.sortedInsert(10);
 	list.sortedInsert(6);
 	list.sortedInsert(1);
-	print("testSortedInsert_pass", list);
+	// print("testSortedInsert_pass", list);
     }
 
     @Test
@@ -183,9 +184,9 @@ public class SingleLinkedListTest {
 	list.add(3);
 	list.add(9);
 	list.add(4);
-	print("testSortByData: before sorting", list);
+	// print("testSortByData: before sorting", list);
 	list.sortListByData();
-	print("testSortByData: after sorting", list);
+	// print("testSortByData: after sorting", list);
     }
 
     @Test
@@ -201,7 +202,6 @@ public class SingleLinkedListTest {
 	listTwo.add(20);
 
 	listOne.appendList(listTwo);
-	System.out.println(listOne);
     }
 
     @Test
@@ -214,10 +214,17 @@ public class SingleLinkedListTest {
 	listTwo.add(20);
 
 	listOne.appendList(listTwo);
-	System.out.println(listOne);
     }
 
-    public void testFrontBackSplit_odd_pass() {
+    public void testFrontBackSplit_odd_pass_1() {
+	SingleLinkedList listOne = new SingleLinkedList();
+	listOne.add(3);
+	List<SingleLinkedList> result = SingleLinkedList.frontBackSplit(listOne);
+	assertEquals("size?", 1, result.size());
+	assertEquals("listOne size?", 1, result.get(0).count());
+    }
+
+    public void testFrontBackSplit_odd_pass_2() {
 	SingleLinkedList listOne = new SingleLinkedList();
 	listOne.add(3);
 	listOne.add(4);
@@ -228,7 +235,16 @@ public class SingleLinkedListTest {
 	assertEquals("listOne size?", 1, result.get(1).count());
     }
 
-    public void testFrontBackSplit_even_pass() {
+    public void testFrontBackSplit_even_pass_1() {
+	SingleLinkedList listOne = new SingleLinkedList();
+	listOne.add(5);
+	listOne.add(6);
+	List<SingleLinkedList> result = SingleLinkedList.frontBackSplit(listOne);
+	assertEquals("size?", 1, result.size());
+	assertEquals("listOne size?", 2, result.get(0).count());
+    }
+
+    public void testFrontBackSplit_even_pass_2() {
 	SingleLinkedList listOne = new SingleLinkedList();
 	listOne.add(3);
 	listOne.add(4);
@@ -240,7 +256,7 @@ public class SingleLinkedListTest {
 	assertEquals("listOne size?", 2, result.get(1).count());
     }
 
-    private void print(String method, Object obj) {
+    public void print(String method, Object obj) {
 	System.out.printf("%s : %s%n", method, obj);
     }
 
