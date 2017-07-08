@@ -1,9 +1,9 @@
-package com.designpattern.observer;
+package com.msrm.designpattern.observer;
 
 public interface Subject {
-	
+
 	void attach(Observer observer);
-	
+
 	void detach(Observer observer);
 
 	void notifyChange();

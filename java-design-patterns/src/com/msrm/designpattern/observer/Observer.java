@@ -1,4 +1,4 @@
-package com.designpattern.observer;
+package com.msrm.designpattern.observer;
 
 public interface Observer {
 
