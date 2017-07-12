@@ -1,4 +1,4 @@
-package com.msrm.designpattern.observer;
+package com.msrm.designpattern.behavioural.observer;
 
 import java.util.ArrayList;
 import java.util.List;

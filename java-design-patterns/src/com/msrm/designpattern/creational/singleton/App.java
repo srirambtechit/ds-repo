@@ -1,4 +1,4 @@
-package com.msrm.designpattern.singleton;
+package com.msrm.designpattern.creational.singleton;
 
 public class App {
 

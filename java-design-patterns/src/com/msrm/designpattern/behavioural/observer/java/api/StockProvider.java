@@ -1,4 +1,4 @@
-package com.msrm.designpattern.observer.java.api;
+package com.msrm.designpattern.behavioural.observer.java.api;
 
 import java.util.Observable;
 
